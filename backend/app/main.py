@@ -18,7 +18,7 @@ app = FastAPI(
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # For localhost development
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -38,7 +38,7 @@ def read_root():
             "list_tickers": "GET /tickers",
             "get_ticker": "GET /tickers/{ticker}",
             "update_ticker": "PATCH /tickers/{ticker}",
-            "delete_ticker": "DELETE /tickers/{ticker}",
+            "delete_ticker": "DELETE /tickers/{ticker}",  
         },
     }
 

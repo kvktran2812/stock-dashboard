@@ -17,7 +17,10 @@ router = APIRouter(
 
 
 @router.post("", response_model=TickerResponse, status_code=201)
-def add_ticker(ticker_data: TickerCreate, db: Session = Depends(get_db)):
+def add_ticker(
+    ticker_data: TickerCreate, 
+    db: Session = Depends(get_db)
+):
     """Add a new stock ticker to monitor"""
     ticker = ticker_data.ticker.upper().strip()
 
@@ -59,7 +62,10 @@ def list_tickers(
 
 
 @router.get("/{ticker}", response_model=TickerResponse)
-def get_ticker(ticker: str, db: Session = Depends(get_db)):
+def get_ticker(
+    ticker: str, 
+    db: Session = Depends(get_db)
+):
     """Get details of a specific ticker"""
     ticker = ticker.upper().strip()
     stock = db.query(StockTicker).filter(StockTicker.ticker == ticker).first()
@@ -94,7 +100,10 @@ def update_ticker(
 
 
 @router.delete("/{ticker}", status_code=204)
-def delete_ticker(ticker: str, db: Session = Depends(get_db)):
+def delete_ticker(
+    ticker: str, 
+    db: Session = Depends(get_db)
+):
     """Delete a ticker from monitoring"""
     ticker = ticker.upper().strip()
     stock = db.query(StockTicker).filter(StockTicker.ticker == ticker).first()
@@ -104,4 +113,4 @@ def delete_ticker(ticker: str, db: Session = Depends(get_db)):
 
     db.delete(stock)
     db.commit()
-    return None
+    return None 
